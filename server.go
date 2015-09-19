@@ -5,19 +5,11 @@ import (
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
-	"github.com/sdvdxl/gin-extend/sources/controllers/captcha"
 	"github.com/sdvdxl/gin-extend/sources/controllers/index"
-	"github.com/sdvdxl/gin-extend/sources/controllers/login"
 	"github.com/sdvdxl/gin-extend/sources/controllers/nav"
-	"github.com/sdvdxl/gin-extend/sources/controllers/order"
-	"github.com/sdvdxl/gin-extend/sources/controllers/regist"
-	"github.com/sdvdxl/gin-extend/sources/controllers/user"
-	"github.com/sdvdxl/gin-extend/sources/controllers/userauth"
-	"github.com/sdvdxl/gin-extend/sources/controllers/userinfo"
 	"github.com/sdvdxl/gin-extend/sources/util"
 	"github.com/sdvdxl/gin-extend/sources/util/db"
 	"github.com/sdvdxl/gin-extend/sources/util/log"
-	"github.com/sdvdxl/gin-extend/sources/util/mail"
 	"github.com/sdvdxl/gin-extend/sources/util/render"
 	"github.com/sdvdxl/gin-extend/sources/util/session"
 	"html/template"
@@ -53,8 +45,7 @@ func init() {
 			//先设置/读取session信息
 			g.Use(sessions.Sessions("my_session", session.SessionStore))
 
-			//然后校验请求的URL
-			g.Use(userauth.CheckLoginPage())
+			//然后其他
 
 			//最后处理静态文件
 			g.Use(static.ServeRoot("/", "static")) // static files have higher priority over dynamic routes

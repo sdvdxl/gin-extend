@@ -2,25 +2,12 @@ package nav
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/sdvdxl/gin-extend/sources/controllers/userauth"
-	"github.com/sdvdxl/gin-extend/sources/util/log"
 	"net/http"
-	"strings"
 )
 
 func SidebarTemplateHandler(c *gin.Context) {
-	var curNav string
-	referPath := c.Request.Referer()
-	referPath = referPath[strings.Index(referPath, c.Request.Host)+len(c.Request.Host):]
 
-	log.Logger.Debug("host:%v, sidebar refer is: %v", c.Request.Host, referPath)
-	if strings.HasPrefix(referPath, "/order") {
-		curNav = "order"
-	} else if strings.HasPrefix(referPath, "/user") {
-		curNav = "user"
-	}
-	auth := userauth.Auth(c)
-	c.HTML(http.StatusOK, "sidebar.tmpl", gin.H{"curNav": curNav, "curUser": auth.CurUser()})
+	c.HTML(http.StatusOK, "sidebar.tmpl", gin.H{})
 }
 
 func HeaderTemplateHandler(c *gin.Context) {

@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/gin-gonic/gin"
 	log "github.com/sdvdxl/log4go"
 )
 
